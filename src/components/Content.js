@@ -1,36 +1,44 @@
+import { useState } from "react";
 import ImageCard from "./ImageCard";
+import ModalCard from "./ModalCard";
 import SearchBar from "./SearchBar";
+import TagsCard from "./TagsCard";
 
 const Content = ({ searchText, photos, query }) => {
+    const [photo, setPhoto] = useState({});
+    const [openModal, setOpenModal] = useState(false);
+
     const handleClick = (e) => {
-        console.log(e);
+        photos.filter((photo) => {
+            if (e.target.alt === photo.alt_description) {
+                const previousSibling = e.target.parentElement.previousSibling;
+                const nextSibling = e.target.parentElement.nextSibling;
+                if (
+                    previousSibling !== null &&
+                    previousSibling.className.includes("image")
+                )
+                    console.log(previousSibling);
+                if (
+                    nextSibling !== null &&
+                    nextSibling.className.includes("image")
+                )
+                    console.log(nextSibling);
+
+                setPhoto(photo);
+                setOpenModal(true);
+            }
+        });
     };
 
     return (
-        <div className="w-full pt-12 flex jusityfy-center items-center flex-col">
+        <div className="w-full pt-12 flex jusityfy-center items-center flex-col relative ">
             <SearchBar searchText={searchText} />
             <div className="w-11/12 mt-10 flex justify-center flex-wrap">
                 <div className="w-9/12 text-5xl mx-auto py-10 self-start text-black font-bold">
                     {query}
                 </div>
 
-                <div className="w-full">
-                    <div className="w-9/12 mx-auto flex flex-nowrap mb-10 overflow-x-scroll">
-                        {photos.map((photo) =>
-                            photo.tags.map((tag) =>
-                                tag.tile === "" ? (
-                                    ""
-                                ) : (
-                                    <span
-                                        key={tag.title}
-                                        className=" w-max py-3 px-6 inline-block bg-gray-200 text-2xl font-semibold text-gray-700 mr-6">
-                                        {tag.title}
-                                    </span>
-                                )
-                            )
-                        )}
-                    </div>
-                </div>
+                <TagsCard photos={photos} />
                 {photos.map((photo) => {
                     return (
                         <ImageCard
@@ -43,6 +51,9 @@ const Content = ({ searchText, photos, query }) => {
                     );
                 })}
             </div>
+            {openModal && (
+                <ModalCard photo={photo} setOpenModal={setOpenModal} />
+            )}
         </div>
     );
 };
