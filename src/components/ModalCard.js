@@ -1,6 +1,6 @@
 import React from "react";
 
-const ModalCard = ({ setOpenModal, photo }) => {
+const ModalCard = ({ setOpenModal, photo, nextPhoto }) => {
     return (
         <div className="w-full h-screen absolute inset-0 bg-black bg-opacity-50">
             <button
@@ -76,7 +76,7 @@ const ModalCard = ({ setOpenModal, photo }) => {
                         </a>
                     </div>
                 </div>
-                <div className="max-w-xs sm:max-w-sm md:max-w-md lg:md:max-w-lg xl:md:max-w-xl 2xl:max-w-4xl m-auto">
+                <div className="max-w-xs sm:max-w-sm md:max-w-md lg:md:max-w-lg xl:md:max-w-xl 2xl:max-w-3xl m-auto">
                     <img
                         className="w-max"
                         src={photo.urls.regular}
@@ -166,7 +166,8 @@ const ModalCard = ({ setOpenModal, photo }) => {
             </button>
             <button
                 id="nextPictureArrow"
-                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 right-1 mr-2 outline-none border-0">
+                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 right-1 mr-2 outline-none border-0"
+                onClick={nextPhoto}>
                 <svg
                     className="w-10 h-10 text-white"
                     xmlns="http://www.w3.org/2000/svg"

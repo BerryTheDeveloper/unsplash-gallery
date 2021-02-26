@@ -9,6 +9,7 @@ const Content = ({ searchText, photos, query }) => {
     const [openModal, setOpenModal] = useState(false);
 
     const handleClick = (e) => {
+        console.log(photos);
         photos.filter((photo) => {
             if (e.target.alt === photo.alt_description) {
                 const previousSibling = e.target.parentElement.previousSibling;
@@ -30,14 +31,15 @@ const Content = ({ searchText, photos, query }) => {
         });
     };
 
+    const nextPhoto = () => {};
+
     return (
-        <div className="w-full pt-12 flex jusityfy-center items-center flex-col relative ">
+        <div className="w-full pt-12 flex jusityfy-center items-center flex-col relative">
             <SearchBar searchText={searchText} />
             <div className="w-11/12 mt-10 flex justify-center flex-wrap">
                 <div className="w-9/12 text-5xl mx-auto py-10 self-start text-black font-bold">
                     {query}
                 </div>
-
                 <TagsCard photos={photos} />
                 {photos.map((photo) => {
                     return (
@@ -52,7 +54,11 @@ const Content = ({ searchText, photos, query }) => {
                 })}
             </div>
             {openModal && (
-                <ModalCard photo={photo} setOpenModal={setOpenModal} />
+                <ModalCard
+                    photo={photo}
+                    setOpenModal={setOpenModal}
+                    nextPhoto={nextPhoto}
+                />
             )}
         </div>
     );

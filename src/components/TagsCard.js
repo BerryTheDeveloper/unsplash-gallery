@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TagsCard = ({ photos }) => {
+    const getSliderPosition = () => {
+        const slider = getSlider();
+        return slider.scrollWidth - slider.offsetWidth;
+    };
+
+    const getSlider = () => window.document.querySelector("#slider");
+
+    const [sliderPosition, setSliderPosition] = useState(getSliderPosition());
+
     const slideLeft = (e) => {
-        const slider = window.document.querySelector("#slider");
+        const slider = getSlider();
         slider.scrollLeft -= 500;
+        setSliderPosition(getSliderPosition() - slider.scrollLeft);
+    };
+    const slideRight = (e) => {
+        const slider = getSlider();
+        slider.scrollLeft += 500;
+        setSliderPosition(getSliderPosition() - slider.scrollLeft);
     };
 
     return (
@@ -11,23 +26,25 @@ const TagsCard = ({ photos }) => {
             <div
                 id="slider"
                 className="w-10/12 mx-auto flex flex-nowrap overflow-x-scroll hide-scroll-bar">
-                <button
-                    className="absolute top-1/2 left-1 transform -translate-y-1/2"
-                    onClick={slideLeft}>
-                    <svg
-                        className="w-5 w-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                        />
-                    </svg>
-                </button>
+                {sliderPosition !== getSliderPosition() && (
+                    <button
+                        className="slide-left absolute top-1/2 left-1 transform -translate-y-1/2"
+                        onClick={slideLeft}>
+                        <svg
+                            className="w-5 w-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                    </button>
+                )}
                 {photos.map((photo) =>
                     photo.tags.map((tag) =>
                         tag.tile === "" ? (
@@ -40,6 +57,25 @@ const TagsCard = ({ photos }) => {
                             </span>
                         )
                     )
+                )}
+                {sliderPosition !== 0 && (
+                    <button
+                        className="slide-right absolute top-1/2 right-1 transform -translate-y-1/2"
+                        onClick={slideRight}>
+                        <svg
+                            className="w-5 h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                        </svg>
+                    </button>
                 )}
             </div>
         </div>
