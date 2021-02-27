@@ -1,9 +1,12 @@
 const ImageCard = ({ imageSmall, imageTags, handleClick, alt }) => {
     return (
-        <div
-            className="image bg-white max-w-sm m-3 rounded shadow-lg"
-            onClick={handleClick}>
-            <img src={imageSmall} alt={alt} className="w-full cursor-pointer" />
+        <div className="image bg-white max-w-sm m-3 rounded shadow-lg">
+            <img
+                src={imageSmall}
+                alt={alt}
+                className="w-full cursor-pointer"
+                onClick={handleClick}
+            />
             <div className="px-6 py-4">
                 {imageTags.map((tag) => (
                     <span

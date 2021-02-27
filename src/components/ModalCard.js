@@ -1,11 +1,13 @@
 import React from "react";
 
-const ModalCard = ({ setOpenModal, photo, nextPhoto }) => {
+const ModalCard = ({ setOpenModal, photo, nextPhoto, scrollPosition }) => {
     return (
-        <div className="w-full h-screen absolute inset-0 bg-black bg-opacity-50">
+        <div
+            className="w-full h-screen absolute inset-0 bg-black bg-opacity-50"
+            style={{ top: scrollPosition }}>
             <button
                 id="close"
-                className="w-max h-max absolute top-1 left-1 ml-6 mt-6 outline-none border-0"
+                className="w-max h-max absolute top-1 left-1 ml-6 mt-6 outline-none border-0 focus:outline-none"
                 onClick={() => setOpenModal(false)}>
                 <svg
                     className="w-10 h-10 text-white"
@@ -59,7 +61,8 @@ const ModalCard = ({ setOpenModal, photo, nextPhoto }) => {
                         </a>
                         <a
                             href={photo.links.download}
-                            className="block px-2 py-2 border-2 border-solid border-gray-300 rounded-xl">
+                            className="block px-2 py-2 border-2 border-solid border-gray-300 rounded-xl"
+                            target="_blank">
                             <svg
                                 className="w-5 h-5"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +152,7 @@ const ModalCard = ({ setOpenModal, photo, nextPhoto }) => {
             </div>
             <button
                 id="previousPictureArrow"
-                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 left-1 ml-2 outline-none border-0">
+                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 left-1 ml-2 focus:outline-none">
                 <svg
                     className="w-10 h-10 text-white"
                     xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +169,7 @@ const ModalCard = ({ setOpenModal, photo, nextPhoto }) => {
             </button>
             <button
                 id="nextPictureArrow"
-                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 right-1 mr-2 outline-none border-0"
+                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 right-1 mr-2 focus:outline-none"
                 onClick={nextPhoto}>
                 <svg
                     className="w-10 h-10 text-white"

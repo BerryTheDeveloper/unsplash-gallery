@@ -19,6 +19,11 @@ function App() {
             .catch((err) => console.log(err));
     };
 
+    const updatePhotos = (e) => {
+        console.log(e.target.innerText);
+        setQuery(e.target.innerText);
+    };
+
     useEffect(() => {
         getPhotos(query);
     }, [query]);
@@ -57,6 +62,7 @@ function App() {
                             searchText={(text) => setQuery(text)}
                             photos={photos}
                             query={query}
+                            updatePhotos={updatePhotos}
                         />
                     )}
                 </Route>

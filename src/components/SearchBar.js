@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const SearchBar = ({ searchText }) => {
+const SearchBar = ({ searchText, query }) => {
     const [pictureTag, setPictureTag] = useState("");
     const history = useHistory();
 
@@ -17,12 +17,12 @@ const SearchBar = ({ searchText }) => {
     };
 
     return (
-        <div className="w-full h-max mt-12 text-gray-500 text-2xl outline-none border-none">
-            <form type="submit" onSubmit={handleSubmit}>
+        <div className="w-10/12 h-max mt-12 text-gray-500 text-2xl outline-none border-none">
+            <form type="submit" className="w-full" onSubmit={handleSubmit}>
                 <input
-                    className="w-2/4 text-left py-8 pl-12 font-medium flex justify-center rounded-md shadow-md mx-auto"
+                    className="w-full text-left py-8 pl-12 font-medium flex justify-center rounded-md shadow-md"
                     type="text"
-                    value={pictureTag}
+                    value={pictureTag || query}
                     onChange={handleChange}
                     placeholder="Search free high-resolution photos"
                 />

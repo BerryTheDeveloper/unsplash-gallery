@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
-const TagsCard = ({ photos }) => {
-    const getSliderPosition = () => {
-        const slider = getSlider();
-        return slider.scrollWidth - slider.offsetWidth;
+const TagsCard = ({ photos, updatePhotos }) => {
+    const getSlider = () => {
+        const sliderDiv = window.document.querySelector("#slider");
+        if (!sliderDiv) return;
+        return sliderDiv;
     };
 
-    const getSlider = () => window.document.querySelector("#slider");
+    const getSliderPosition = () => {
+        const slider = getSlider();
+        if (!slider) return;
+        return slider.scrollWidth - slider.offsetWidth;
+    };
 
     const [sliderPosition, setSliderPosition] = useState(getSliderPosition());
 
@@ -28,7 +33,7 @@ const TagsCard = ({ photos }) => {
                 className="w-10/12 mx-auto flex flex-nowrap overflow-x-scroll hide-scroll-bar">
                 {sliderPosition !== getSliderPosition() && (
                     <button
-                        className="slide-left absolute top-1/2 left-1 transform -translate-y-1/2"
+                        className="slide-left absolute top-1/2 left-1 transform -translate-y-1/2 focus:outline-none"
                         onClick={slideLeft}>
                         <svg
                             className="w-5 w-6"
@@ -50,17 +55,18 @@ const TagsCard = ({ photos }) => {
                         tag.tile === "" ? (
                             ""
                         ) : (
-                            <span
+                            <button
                                 key={tag.title}
-                                className="py-3 px-6 bg-white bg-opacity border-2 border-black border-solid flex justify-center items-center text-2xl font-semibold text-gray-700 mr-6 hover:bg-gray-200 hover:bg-opacity-200">
+                                className="py-3 px-6 bg-white bg-opacity border-2 border-black border-solid flex justify-center items-center text-2xl font-semibold text-gray-700 mr-6 hover:bg-gray-200 hover:bg-opacity-200 cursor-pointer"
+                                onClick={(e) => updatePhotos(e)}>
                                 {tag.title}
-                            </span>
+                            </button>
                         )
                     )
                 )}
                 {sliderPosition !== 0 && (
                     <button
-                        className="slide-right absolute top-1/2 right-1 transform -translate-y-1/2"
+                        className="slide-right absolute top-1/2 right-1 transform -translate-y-1/2 focus:outline-none"
                         onClick={slideRight}>
                         <svg
                             className="w-5 h-5"
