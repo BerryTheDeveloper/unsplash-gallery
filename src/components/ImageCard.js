@@ -1,7 +1,8 @@
-const ImageCard = ({ imageSmall, imageTags, handleClick, alt }) => {
+const ImageCard = ({ id, imageSmall, imageTags, handleClick, alt }) => {
     return (
         <div className="image bg-white max-w-sm m-3 rounded shadow-lg">
             <img
+                data-key={id}
                 src={imageSmall}
                 alt={alt}
                 className="w-full cursor-pointer"

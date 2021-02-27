@@ -13,31 +13,67 @@ const Content = ({ searchText, photos, query, updatePhotos }) => {
     const [photo, setPhoto] = useState({});
     const [openModal, setOpenModal] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(getScrollPosition());
+    const [hideRightArrow, sethideRightArrow] = useState(false);
+    const [hideLeftArrow, sethideLeftArrow] = useState(false);
+
+    const changeVisibilityArrows = (index) => {
+        index === photos.length - 1
+            ? sethideRightArrow(true)
+            : sethideRightArrow(false);
+        // if (index === photos.length - 1) return sethideRightArrow(true);
+        index === 0 ? sethideLeftArrow(true) : sethideLeftArrow(false);
+        // if (index === 0) return sethideLeftArrow(true);
+        // sethideLeftArrow(false);
+        // sethideRightArrow(false);
+    };
 
     const handleClick = (e) => {
         setScrollPosition(getScrollPosition());
-        photos.filter((photo) => {
-            if (e.target.alt === photo.alt_description) {
-                const previousSibling = e.target.parentElement.previousSibling;
-                const nextSibling = e.target.parentElement.nextSibling;
-                // if (
-                //     previousSibling !== null &&
-                //     previousSibling.className.includes("image")
-                // )
-                //     console.log(previousSibling);
-                // if (
-                //     nextSibling !== null &&
-                //     nextSibling.className.includes("image")
-                // )
-                //     console.log(nextSibling);
-
+        photos.forEach((photo, index) => {
+            const dataKey = e.target.attributes["data-key"].value;
+            if (dataKey === photo.id) {
+                console.log();
+                console.log(e);
                 setPhoto(photo);
+                changeVisibilityArrows(index);
                 setOpenModal(true);
+                console.log(index);
             }
         });
     };
 
-    const nextPhoto = () => {};
+    const nextPhoto = () => {
+        photos.forEach((eachPhoto, index) => {
+            if (eachPhoto.id === photo.id) {
+                if (index === photos.length - 1) {
+                    sethideLeftArrow(false);
+                } else if (index === photos.length - 2) {
+                    setPhoto(photos[index + 1]);
+                    sethideRightArrow(true);
+                } else {
+                    setPhoto(photos[index + 1]);
+                    sethideLeftArrow(false);
+                    sethideRightArrow(false);
+                }
+            }
+        });
+    };
+    const previousPhoto = () => {
+        photos.forEach((eachPhoto, index) => {
+            if (eachPhoto.id === photo.id) {
+                if (index === 0) {
+                    sethideRightArrow(false);
+                } else if (index === 1) {
+                    sethideLeftArrow(true);
+                    setPhoto(photos[index - 1]);
+                } else {
+                    setPhoto(photos[index - 1]);
+                    sethideLeftArrow(false);
+                    sethideRightArrow(false);
+                }
+            }
+        });
+    };
 
     return (
         <div className="w-full pt-12 flex jusityfy-center items-center flex-col relative">
@@ -59,6 +95,7 @@ const Content = ({ searchText, photos, query, updatePhotos }) => {
                             return (
                                 <ImageCard
                                     key={photo.id}
+                                    id={photo.id}
                                     imageSmall={photo.urls.small}
                                     alt={photo.alt_description}
                                     imageTags={photo.tags}
@@ -71,7 +108,10 @@ const Content = ({ searchText, photos, query, updatePhotos }) => {
                         <ModalCard
                             photo={photo}
                             setOpenModal={setOpenModal}
+                            previousPhoto={previousPhoto}
                             nextPhoto={nextPhoto}
+                            hideRightArrow={hideRightArrow}
+                            hideLeftArrow={hideLeftArrow}
                             scrollPosition={scrollPosition}
                         />
                     )}

@@ -20,7 +20,6 @@ function App() {
     };
 
     const updatePhotos = (e) => {
-        console.log(e.target.innerText);
         setQuery(e.target.innerText);
     };
 

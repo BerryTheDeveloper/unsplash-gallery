@@ -1,6 +1,14 @@
 import React from "react";
 
-const ModalCard = ({ setOpenModal, photo, nextPhoto, scrollPosition }) => {
+const ModalCard = ({
+    setOpenModal,
+    photo,
+    previousPhoto,
+    nextPhoto,
+    hideRightArrow,
+    hideLeftArrow,
+    scrollPosition,
+}) => {
     return (
         <div
             className="w-full h-screen absolute inset-0 bg-black bg-opacity-50"
@@ -150,41 +158,46 @@ const ModalCard = ({ setOpenModal, photo, nextPhoto, scrollPosition }) => {
                     </div>
                 </div>
             </div>
-            <button
-                id="previousPictureArrow"
-                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 left-1 ml-2 focus:outline-none">
-                <svg
-                    className="w-10 h-10 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 19l-7-7 7-7"
-                    />
-                </svg>
-            </button>
-            <button
-                id="nextPictureArrow"
-                className="w-max h-max absolute top-1/2 transform -transition-y-1/2 right-1 mr-2 focus:outline-none"
-                onClick={nextPhoto}>
-                <svg
-                    className="w-10 h-10 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                    />
-                </svg>
-            </button>
+            {!hideLeftArrow && (
+                <button
+                    id="previousPictureArrow"
+                    className="w-max h-max absolute top-1/2 transform -transition-y-1/2 left-1 ml-2 focus:outline-none"
+                    onClick={previousPhoto}>
+                    <svg
+                        className="w-10 h-10 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 19l-7-7 7-7"
+                        />
+                    </svg>
+                </button>
+            )}
+            {!hideRightArrow && (
+                <button
+                    id="nextPictureArrow"
+                    className="w-max h-max absolute top-1/2 transform -transition-y-1/2 right-1 mr-2 focus:outline-none"
+                    onClick={nextPhoto}>
+                    <svg
+                        className="w-10 h-10 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                        />
+                    </svg>
+                </button>
+            )}
         </div>
     );
 };
