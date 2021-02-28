@@ -12,7 +12,7 @@ function App() {
     const [options, setOptions] = useState([]);
 
     const getPhotos = (query) => {
-        const api = `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_ACCES_KEY}&page=1&query=${query}&orientation=squarish`;
+        const api = `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_ACCES_KEY}&page=1&query=${query}`;
         fetch(api)
             .then((res) => res.json())
             .then((data) => {
@@ -24,11 +24,11 @@ function App() {
 
     const getSearch = (searchTerm) => {
         if (searchTerm === "") return;
-        const api = `https://cors-anywhere.herokuapp.com/https://unsplash.com/nautocomplete/${searchTerm}`;
+        const api = `https://api.datamuse.com/sug?s=${searchTerm}`;
         fetch(api)
             .then((res) => res.json())
             .then((data) => {
-                setOptions(data.autocomplete);
+                setOptions(data);
             })
             .catch((err) => console.log(err));
     };
@@ -49,10 +49,10 @@ function App() {
         <div className="w-full">
             <Switch>
                 <Route exact={true} path="/">
-                    <div className="w-full h-screen bg-blue-200">
-                        <div className="w-11/12 h-full m-auto flex flex-col items-center">
-                            <div className="w-3/4 ml-auto flex pt-96 flex-col text-left justify-start">
-                                <h1 className="text-7xl font-bold text-white pb-8">
+                    <div className="w-full h-screen bg-image bg-cover bg-no-repeat">
+                        <div className="w-11/12 h-full mx-auto pt-2 sm:pt-12 md:pt-2">
+                            <div className="w-3/4 flex m-auto flex-col text-left justify-start">
+                                <h1 className="text-5xl sm:text-7xl font-bold text-white pb-8">
                                     Unsplash
                                 </h1>
                                 <p className="text-white font-medium text-2xl">

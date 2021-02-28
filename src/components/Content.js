@@ -37,12 +37,9 @@ const Content = ({
         photos.forEach((photo, index) => {
             const dataKey = e.target.attributes["data-key"].value;
             if (dataKey === photo.id) {
-                console.log();
-                console.log(e);
                 setPhoto(photo);
                 changeVisibilityArrows(index);
                 setOpenModal(true);
-                console.log(index);
             }
         });
     };

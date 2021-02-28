@@ -14,7 +14,7 @@ const SearchBar = ({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (pictureTag === "") return;
+        if (pictureTag === "" || options.length === 0) return;
         searchText(pictureTag);
         setDisplay(false);
         history.push(`/pictures/${pictureTag}`);
@@ -42,13 +42,13 @@ const SearchBar = ({
     }, [query]);
 
     return (
-        <div className="w-10/12 h-max mt-12 text-gray-500 text-2xl outline-none border-none">
+        <div className="w-11/12 sm:w-10/12 h-max mt-12 text-gray-500 text-xl text-sm sm:text-2xl outline-none border-none">
             <form
                 type="submit"
                 className="w-full relative"
                 onSubmit={handleSubmit}>
                 <input
-                    className="w-full text-left py-8 pl-12 font-medium flex justify-center rounded-xl border-b-2 border-gray-500 shadow-md focus:outline-none"
+                    className="w-full text-left py-4 md:py-8 pl-2 font-medium flex justify-center rounded-xl border-b-2 border-gray-500 shadow-md focus:outline-none"
                     type="text"
                     value={pictureTag}
                     onChange={handleChange}
@@ -57,12 +57,12 @@ const SearchBar = ({
                 {display && (
                     <div className="absolute w-full flex flex-col bg-white text-left font-medium flex justify-center shadow-md rounded-md z-10">
                         {options.length !== 0 ? (
-                            options.map((option) => (
+                            options.slice(0, 5).map((option) => (
                                 <div
-                                    key={option.priority}
-                                    className="w-full py-8 pl-12 cursor-pointer hover:bg-gray-100 "
-                                    onClick={() => handleQuery(option.query)}>
-                                    {option.query}
+                                    key={option.word}
+                                    className="w-full py-2 sm:py-4 lg:py-6  pl-4 cursor-pointer hover:bg-gray-100 "
+                                    onClick={() => handleQuery(option.word)}>
+                                    {option.word}
                                 </div>
                             ))
                         ) : (

@@ -33,7 +33,7 @@ const TagsCard = ({ photos, updatePhotos }) => {
                 className="w-10/12 mx-auto flex flex-nowrap overflow-x-scroll hide-scroll-bar">
                 {sliderPosition !== getSliderPosition() && (
                     <button
-                        className="slide-left absolute top-1/2 left-1 transform -translate-y-1/2 focus:outline-none"
+                        className="slide-left absolute top-1/2 left-1 transform -translate-y-1/2 focus:outline-none hidden sm:block"
                         onClick={slideLeft}>
                         <svg
                             className="w-5 w-6"
@@ -66,7 +66,7 @@ const TagsCard = ({ photos, updatePhotos }) => {
                 )}
                 {sliderPosition !== 0 && (
                     <button
-                        className="slide-right absolute top-1/2 right-1 transform -translate-y-1/2 focus:outline-none"
+                        className="slide-right absolute top-1/2 right-1 transform -translate-y-1/2 focus:outline-none hidden sm:block"
                         onClick={slideRight}>
                         <svg
                             className="w-5 h-5"

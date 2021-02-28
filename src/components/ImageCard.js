@@ -1,6 +1,6 @@
 const ImageCard = ({ id, imageSmall, imageTags, handleClick, alt }) => {
     return (
-        <div className="image bg-white max-w-sm m-3 rounded shadow-lg">
+        <div className="image bg-transparent max-w-sm m-3">
             <img
                 data-key={id}
                 src={imageSmall}
@@ -8,11 +8,11 @@ const ImageCard = ({ id, imageSmall, imageTags, handleClick, alt }) => {
                 className="w-full cursor-pointer"
                 onClick={handleClick}
             />
-            <div className="px-6 py-4">
+            <div className=" py-4">
                 {imageTags.map((tag) => (
                     <span
                         key={tag.title}
-                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mt-2">
                         #{tag.title}
                     </span>
                 ))}
