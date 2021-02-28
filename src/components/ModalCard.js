@@ -9,11 +9,12 @@ const ModalCard = ({
     hideLeftArrow,
     scrollPosition,
 }) => {
-    const handleCopyToClipboard = (e) => {
+    const handleCopyToClipboard = () => {
+        const buttonValue = document.querySelector(".share");
         const inputForCopy = document.body.appendChild(
             document.createElement("input")
         );
-        inputForCopy.value = e.target.value;
+        inputForCopy.value = buttonValue.value;
         inputForCopy.select();
         document.execCommand("copy");
         document.body.removeChild(inputForCopy);
@@ -144,7 +145,7 @@ const ModalCard = ({
                         <button
                             className="share px-2 py-2 border-2 border-solid border-gray-300 rounded-xl flex justify-end text-gray-500 font-bold text-md mr-2 hover:border-gray-500 focus:outline-none"
                             value={`https://unsplash.com/photos/${photo.id}`}
-                            onClick={(e) => handleCopyToClipboard(e)}>
+                            onClick={() => handleCopyToClipboard()}>
                             <svg
                                 className="w-5 h-5 mr-1 text-gray-500"
                                 xmlns="http://www.w3.org/2000/svg"
