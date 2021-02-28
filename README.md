@@ -26,7 +26,11 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/Simply-man/unsplash-gallery/blob/master/screenshotFortGithub/unsplashGallery.png)
+<br>
+<p align="center">
+<a href="https://unsplash-gall.netlify.com" target="_blank"> <img src="screenshotFortGithub/unsplashGallery.png" width=600/></a>
+</p>
+<br>
 
 The application was built on the basis of the Unsplash API. It presents a simple photo gallery based on searched words. The user can search for photos on the basis of any word, get a link to share and download the photo, in addition, he can be redirected to the main unsplash page to obtain information about the selected photo. It can also be redirected to the author of the photo.
 
