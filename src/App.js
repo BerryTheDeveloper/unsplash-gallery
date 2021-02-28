@@ -7,6 +7,9 @@ function App() {
     const [photos, setPhotos] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [query, setQuery] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [display, setDisplay] = useState(false);
+    const [options, setOptions] = useState([]);
 
     const getPhotos = (query) => {
         const api = `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_ACCES_KEY}&page=1&query=${query}&orientation=squarish`;
@@ -19,6 +22,17 @@ function App() {
             .catch((err) => console.log(err));
     };
 
+    const getSearch = (searchTerm) => {
+        if (searchTerm === "") return;
+        const api = `https://cors-anywhere.herokuapp.com/https://unsplash.com/nautocomplete/${searchTerm}`;
+        fetch(api)
+            .then((res) => res.json())
+            .then((data) => {
+                setOptions(data.autocomplete);
+            })
+            .catch((err) => console.log(err));
+    };
+
     const updatePhotos = (e) => {
         setQuery(e.target.innerText);
     };
@@ -26,6 +40,10 @@ function App() {
     useEffect(() => {
         getPhotos(query);
     }, [query]);
+
+    useEffect(() => {
+        getSearch(searchTerm);
+    }, [searchTerm]);
 
     return (
         <div className="w-full">
@@ -45,7 +63,12 @@ function App() {
                                     Powered by creators everywhere
                                 </p>
                                 <SearchBar
+                                    search={(term) => setSearchTerm(term)}
+                                    setDisplay={setDisplay}
                                     searchText={(text) => setQuery(text)}
+                                    query={query}
+                                    display={display}
+                                    options={options}
                                 />
                             </div>
                         </div>
@@ -58,10 +81,14 @@ function App() {
                         </h1>
                     ) : (
                         <Content
+                            search={(term) => setSearchTerm(term)}
                             searchText={(text) => setQuery(text)}
                             photos={photos}
                             query={query}
                             updatePhotos={updatePhotos}
+                            display={display}
+                            setDisplay={setDisplay}
+                            options={options}
                         />
                     )}
                 </Route>

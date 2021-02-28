@@ -27,7 +27,7 @@ const TagsCard = ({ photos, updatePhotos }) => {
     };
 
     return (
-        <div className="w-full relative mb-10">
+        <div className="w-full relative mb-10 relative z-0">
             <div
                 id="slider"
                 className="w-10/12 mx-auto flex flex-nowrap overflow-x-scroll hide-scroll-bar">

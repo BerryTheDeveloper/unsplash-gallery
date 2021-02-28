@@ -4,7 +4,16 @@ import ModalCard from "./ModalCard";
 import SearchBar from "./SearchBar";
 import TagsCard from "./TagsCard";
 
-const Content = ({ searchText, photos, query, updatePhotos }) => {
+const Content = ({
+    display,
+    setDisplay,
+    search,
+    options,
+    searchText,
+    photos,
+    query,
+    updatePhotos,
+}) => {
     const getScrollPosition = () =>
         window.scrollY ||
         window.scrollTop ||
@@ -20,11 +29,7 @@ const Content = ({ searchText, photos, query, updatePhotos }) => {
         index === photos.length - 1
             ? sethideRightArrow(true)
             : sethideRightArrow(false);
-        // if (index === photos.length - 1) return sethideRightArrow(true);
         index === 0 ? sethideLeftArrow(true) : sethideLeftArrow(false);
-        // if (index === 0) return sethideLeftArrow(true);
-        // sethideLeftArrow(false);
-        // sethideRightArrow(false);
     };
 
     const handleClick = (e) => {
@@ -81,8 +86,12 @@ const Content = ({ searchText, photos, query, updatePhotos }) => {
                 <>
                     <div className="w-3/4 flex justify-center items-center">
                         <SearchBar
+                            search={(term) => search(term)}
                             searchText={(text) => searchText(text)}
                             query={query}
+                            display={display}
+                            options={options}
+                            setDisplay={setDisplay}
                         />
                     </div>
                     <div className="w-11/12 mt-10 flex justify-center flex-wrap">
@@ -90,7 +99,6 @@ const Content = ({ searchText, photos, query, updatePhotos }) => {
                             {query}
                         </div>
                         <TagsCard photos={photos} updatePhotos={updatePhotos} />
-                        ;
                         {photos.map((photo) => {
                             return (
                                 <ImageCard
