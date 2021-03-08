@@ -1,4 +1,5 @@
-# Unsplash gallery made with React and TailwindCSS
+# Unsplash gallery made with React and TailwindCSS 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f76e5a48-bbb7-40ef-97cc-a6c417371c68/deploy-status)](https://app.netlify.com/sites/unsplash-gall/deploys)
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
