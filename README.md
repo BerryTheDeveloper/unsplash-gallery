@@ -45,7 +45,7 @@ Application was built with:
 -   [TailwindCSS](https://tailwindcss.com/)
 -   [Unsplash API](https://unsplash.com/developers)
 -   [Datamuse API](https://www.datamuse.com/api/)
--   [Axios][https://github.com/axios/axios]
+-   [Axios](https://github.com/axios/axios)
 
 <!-- GETTING STARTED -->
 
