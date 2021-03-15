@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { Switch, Route } from "react-router-dom";
 import Content from "./components/Content";
+import axios from "axios";
 
 function App() {
-    const [photos, setPhotos] = useState();
+    const [photos, setPhotos] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [query, setQuery] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
@@ -13,10 +14,10 @@ function App() {
 
     const getPhotos = (query) => {
         const api = `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_ACCES_KEY}&page=1&query=${query}`;
-        fetch(api)
-            .then((res) => res.json())
+        axios
+            .get(api)
             .then((data) => {
-                setPhotos(data.results);
+                setPhotos(data.data.results);
                 setIsLoading(false);
             })
             .catch((err) => console.log(err));
@@ -25,10 +26,9 @@ function App() {
     const getSearch = (searchTerm) => {
         if (searchTerm === "") return;
         const api = `https://api.datamuse.com/sug?s=${searchTerm}`;
-        fetch(api)
-            .then((res) => res.json())
+        axios(api)
             .then((data) => {
-                setOptions(data);
+                setOptions(data.data);
             })
             .catch((err) => console.log(err));
     };
