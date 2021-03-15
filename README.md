@@ -1,4 +1,5 @@
-# Unsplash gallery made with React and TailwindCSS 
+# Unsplash gallery made with React and TailwindCSS
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f76e5a48-bbb7-40ef-97cc-a6c417371c68/deploy-status)](https://app.netlify.com/sites/unsplash-gall/deploys) [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://unsplash-gall.netlify.app/)
 
 <br/>
@@ -44,6 +45,7 @@ Application was built with:
 -   [TailwindCSS](https://tailwindcss.com/)
 -   [Unsplash API](https://unsplash.com/developers)
 -   [Datamuse API](https://www.datamuse.com/api/)
+-   [Axios][https://github.com/axios/axios]
 
 <!-- GETTING STARTED -->
 
