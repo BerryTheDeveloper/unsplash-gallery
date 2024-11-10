@@ -1,7 +1,4 @@
 # Unsplash gallery made with React and TailwindCSS
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f76e5a48-bbb7-40ef-97cc-a6c417371c68/deploy-status)](https://app.netlify.com/sites/unsplash-gall/deploys) [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://unsplash-gall.netlify.app/)
-
 <br/>
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -75,13 +72,7 @@ Follow the instructions bellow to start the project on your own machine.
     ```JS
     const REACT_APP_ACCES_KEY = 'ENTER YOUR ACCES KEY FROM UNSPLASH';
     ```
-
-<!-- USAGE EXAMPLES -->
-
-## Demo
-
-_Check the application in the real world [Demo](https://unsplash-gall.netlify.com)_
-
+    
 <!-- CONTACT -->
 
 ## Contact
